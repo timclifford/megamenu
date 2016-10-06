@@ -31,19 +31,19 @@ $primary-font: sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
 
-$S:     480px;   
-$M:     768px;     
-$L:     1024px;     
+$S:     480px;
+$M:     768px;
+$L:     1024px;
 
 @mixin MQ($canvas) {
   @if $canvas == S {
-   @media only screen and (min-width: $S) { @content; } 
+   @media only screen and (min-width: $S) { @content; }
   }
   @else if $canvas == M {
-   @media only screen and (min-width: $M) { @content; } 
+   @media only screen and (min-width: $M) { @content; }
   }
   @else if $canvas == L {
-   @media only screen and (min-width: $L) { @content; } 
+   @media only screen and (min-width: $L) { @content; }
   }
 }
 
@@ -192,7 +192,51 @@ $easeOutBack     :  cubic-bezier(0.175,  0.885, 0.320, 1.275);
 $easeInOutBack   :  cubic-bezier(0.680, -0.550, 0.265, 1.550);
 
 
-/* -------------------------------- 
+
+
+///////////////////////////////////////////////////////////////////////////////
+// TEMP CHANGES
+//
+nav.sub-menu {
+	ul.cd-dropdown-content {
+		li {
+			a.second-level-item {
+				display: none;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: $L) {
+	nav.sub-menu {
+		ul.cd-dropdown-content {
+			li {
+				a.second-level-item {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+.cd-dropdown-content .cd-secondary-dropdown {
+  padding: 0;
+  left: -20px;
+}
+
+.sub-menu-wrapper {
+    margin: 0 auto;
+    position: relative;
+    display: table;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// END TEMP CHANGES
+
+
+
+
+/* --------------------------------
 
 Primary style
 
@@ -230,9 +274,9 @@ input {
 }
 
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 
@@ -245,7 +289,7 @@ header {
 	display: inline-block;
 	position: relative;
 	height: 40px;
-	margin: 5px 20px; 
+	margin: 5px 20px;
 }
 
 .cd-dropdown-trigger {
@@ -271,8 +315,8 @@ header {
 		width: 9px;
 		background: grey;
 		@include backface-visibility(hidden);
-		
-		@include transition(width .3s, transform .3s);		
+
+		@include transition(width .3s, transform .3s);
 	}
 
 	&::before {
@@ -313,8 +357,8 @@ header {
 	}
 }
 
-.cd-dropdown h2, 
-.cd-dropdown-content a, 
+.cd-dropdown h2,
+.cd-dropdown-content a,
 .cd-dropdown-content ul a {
 	height: 50px;
 	line-height: 50px;
@@ -330,8 +374,8 @@ header {
 	}
 }
 
-.cd-dropdown h2, 
-.cd-dropdown-content a, 
+.cd-dropdown h2,
+.cd-dropdown-content a,
 .cd-dropdown-content ul a,
 .cd-dropdown-content .cd-divider {
 	padding: 0 20px;
@@ -347,7 +391,7 @@ header {
 	background-color: $color-1;
 	color: $color-3;
 	visibility: hidden;
-	
+
 	/* Force Hardware Acceleration */
 	@include backface-visibility(hidden);
 	@include transform(translateZ(0));
@@ -508,7 +552,7 @@ header {
 
 	&.is-hidden > li > a,
 	&.is-hidden > li > .cd-search,
-	&.is-hidden > .cd-divider, 
+	&.is-hidden > .cd-divider,
 	&.move-out > li > a,
 	&.move-out > li > .cd-search,
 	&.move-out > .cd-divider {
@@ -559,7 +603,7 @@ header {
 
 		&.is-hidden > li > a,
 		&.is-hidden > li > .cd-search,
-		&.is-hidden > .cd-divider, 
+		&.is-hidden > .cd-divider,
 		&.move-out > li > a,
 		&.move-out > li > .cd-search,
 		&.move-out > .cd-divider {
@@ -703,11 +747,15 @@ header {
 		.cd-secondary-dropdown, .cd-dropdown-gallery, .cd-dropdown-icons  {
 			@include clearfix;
 			@include transform(translateX(0));
-			left: 100%;
+
+			// TEMP REMOVING
+			//left: 100%;
+			//
+
 			height: auto;
 			background-color: $color-3;
 			box-shadow: 0 2px 14px rgba(#000, .1);
-			
+
 			.open-to-left & {
 				/* use the .open-to-left class if you want to open the dropdown on the left */
 				left: auto;
@@ -775,7 +823,7 @@ header {
 
 		.cd-secondary-dropdown {
 			overflow: hidden;
-			width: 1200px;
+			width: 1400px;
 			padding-bottom: 65px;
 
 			&::before {
@@ -817,9 +865,9 @@ header {
 				height: 250px;
 			}
 
-			> li:nth-of-type(2n) {
-				border-right-width: 0; 
-			}
+/* 			> li:nth-of-type(2n) {
+				border-right-width: 0;
+			} */
 
 			> li > ul {
 				/* reset mobile style */
@@ -881,7 +929,7 @@ header {
 				&:nth-of-type(2n) {
 					margin-right: 0;
 				}
-			}	
+			}
 
 			.cd-dropdown-item {
 				padding: 0;
@@ -932,9 +980,13 @@ header {
 			}
 		}
 
-		> .has-children > ul {
-			visibility: hidden;
-		}
+
+
+		/* TEMP SHOWING DROPDOWN ON LOAD */
+		// > .has-children > ul {
+		// 	visibility: hidden;
+		// }
+
 
 		> .has-children > ul.is-active {
 			/* when hover over .cd-dropdown-content items - show subnavigation */
@@ -1006,7 +1058,7 @@ header {
 }
 
 @include MQ(L) {
-	
+
 	.open-to-left .cd-dropdown-content > .has-children > a {
 		padding-left: 40px;
 		padding-right: 20px;
